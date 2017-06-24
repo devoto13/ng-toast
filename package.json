@@ -22,8 +22,9 @@
     "cleanup": "rm -rf dist build",
     "build:es2015": "ngc -p tsconfig-build.json && rollup build/ng-toast.js -o dist/ng-toast.js -f es -e '@angular/core,@angular/common'",
     "build:es5": "ngc -p tsconfig-es5.json && rollup build/ng-toast.js -o dist/ng-toast.es5.js -f es -e '@angular/core,@angular/common'",
+    "build:docs": "cd demo && yarn build",
     "prebuild": "yarn cleanup",
-    "build": "yarn build:es2015 && yarn build:es5",
+    "build": "yarn build:es2015 && yarn build:es5 && yarn build:docs",
     "postbuild": "rsync -a --exclude=*.js build/ dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
