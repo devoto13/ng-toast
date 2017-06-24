@@ -1,0 +1,43 @@
+{
+  "name": "@devoto13/ng-toast",
+  "version": "0.1.0",
+  "author": "Yaroslav Admin <devoto13@gmail.com>",
+  "description": "Toasts for Angular, highly inspired by https://github.com/tameraydin/ngToast.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devoto13/ng-toast.git"
+  },
+  "module": "dist/ng-toast.es5.js",
+  "es2015": "dist/ng-toast.js",
+  "typings": "dist/ng-toast.d.ts",
+  "peerDependencies": {
+    "@angular/common": "^4.2.4",
+    "@angular/core": "^4.2.4",
+    "rxjs": "^5.4.1",
+    "zone.js": "^0.8.12"
+  },
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "cleanup": "rm -rf dist build",
+    "build:es2015": "ngc -p tsconfig-build.json && rollup build/ng-toast.js -o dist/ng-toast.js -f es -e '@angular/core,@angular/common'",
+    "build:es5": "ngc -p tsconfig-es5.json && rollup build/ng-toast.js -o dist/ng-toast.es5.js -f es -e '@angular/core,@angular/common'",
+    "prebuild": "yarn cleanup",
+    "build": "yarn build:es2015 && yarn build:es5",
+    "postbuild": "rsync -a --exclude=*.js build/ dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@angular/common": "^4.2.4",
+    "@angular/compiler": "^4.2.4",
+    "@angular/compiler-cli": "^4.2.4",
+    "@angular/core": "^4.2.4",
+    "rollup": "^0.43.0",
+    "rxjs": "^5.4.1",
+    "typescript": "~2.3.4",
+    "zone.js": "^0.8.12"
+  }
+}
